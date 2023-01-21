@@ -33,21 +33,22 @@ const buildTree = (dataFromFile1, dataFromFile2) => {
   });
 };
 
-const stringify = (tree) => {
-  const lines = tree.map((node) => {
-    switch (node.flag) {
-      case 'deleted':
-        return `  - ${node.key}: ${node.value}`;
-      case 'added':
-        return `  + ${node.key}: ${node.value}`;
-      case 'changed':
-        return `  - ${node.key}: ${node.value1}\n  + ${node.key}: ${node.value2}`;
-      case 'unchanged':
-        return `    ${node.key}: ${node.value}`;
-      default:
-        throw new Error(`Unknown type of node ${node.type}.`);
-    }
-  });
+const stringify = (tree) => tree.map((node) => {
+  switch (node.flag) {
+    case 'deleted':
+      return `  - ${node.key}: ${node.value}`;
+    case 'added':
+      return `  + ${node.key}: ${node.value}`;
+    case 'changed':
+      return `  - ${node.key}: ${node.value1}\n  + ${node.key}: ${node.value2}`;
+    case 'unchanged':
+      return `    ${node.key}: ${node.value}`;
+    default:
+      throw new Error(`Unknown type of node ${node.type}.`);
+  }
+});
+
+const buildLinesOutput = (lines) => {
   return [
     '{',
     ...lines,
@@ -58,6 +59,8 @@ const stringify = (tree) => {
 export default (filepath1, filepath2/* , format = 'stylish' */) => {
   const dataFromFile1 = readFile(filepath1);
   const dataFromFile2 = readFile(filepath2);
-  const diff = buildTree(dataFromFile1, dataFromFile2);
-  return stringify(diff);
+  const tree = buildTree(dataFromFile1, dataFromFile2);
+  const diff = stringify(tree);
+  const stylishOutput = buildLinesOutput(diff);
+  return stylishOutput;
 };
