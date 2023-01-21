@@ -48,10 +48,10 @@ const stringify = (tree) => tree.map((node) => {
   }
 });
 
-const buildLinesOutput = (lines) => {
+const buildLinesOutput = (diff) => {
   return [
     '{',
-    ...lines,
+    ...diff,
     '}',
   ].join('\n');
 };
