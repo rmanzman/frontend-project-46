@@ -1,0 +1,33 @@
+{
+  "name": "@hexlet/code",
+  "description": "[![Actions Status](https://github.com/rmanzman/frontend-project-46/workflows/hexlet-check/badge.svg)](https://github.com/rmanzman/frontend-project-46/actions)",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "gendiff": "bin/gendiff.js"
+  },
+  "dependencies": {
+    "commander": "^10.0.0",
+    "js-yaml": "^4.1.0",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "eslint": "^8.32.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.4"
+  },
+  "scripts": {
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest --bail --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rmanzman/frontend-project-46.git"
+  },
+  "author": "Roman Krayzman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rmanzman/frontend-project-46/issues"
+  },
+  "homepage": "https://github.com/rmanzman/frontend-project-46#readme"
+}
