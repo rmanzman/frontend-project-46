@@ -2,7 +2,7 @@ import { readFileSync } from 'fs';
 import _ from 'lodash';
 import path from 'path';
 import parseData from './parsers.js';
-// import format from './formatters/index.js';
+import format from './formatters/index.js';
 
 const getFormat = (filepath) => _.trim(path.extname(filepath), '.');
 
@@ -56,11 +56,11 @@ const buildLinesOutput = (diff) => {
   ].join('\n');
 };
 
-export default (filepath1, filepath2/* , format = 'stylish' */) => {
+export default (filepath1, filepath2, formatName = 'stylish') => {
   const dataFromFile1 = readFile(filepath1);
   const dataFromFile2 = readFile(filepath2);
   const tree = buildTree(dataFromFile1, dataFromFile2);
   const diff = stringify(tree);
   const stylishOutput = buildLinesOutput(diff);
-  return stylishOutput;
+  return format(stylishOutput, formatName);
 };
