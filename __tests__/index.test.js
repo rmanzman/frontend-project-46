@@ -1,34 +1,39 @@
-import { test, expect } from '@jest/globals';
 import { fileURLToPath } from 'url';
 import path, { dirname } from 'path';
 import { readFileSync } from 'fs';
+import { expect, test } from '@jest/globals';
 import genDiff from '../src/index.js';
+import stylish from '../src/formatters/stylish.js';
+// import plain from '../src/formatters/plain.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
-const readFixture = (filename) => readFileSync(getFixturePath(filename), 'utf-8');
+const readFile = (filename) => readFileSync(getFixturePath(filename), 'utf-8');
 
-// const formats = ['json', 'yaml', 'yml'];
-// const formats = ['json'];
+const badpath1 = getFixturePath('file1.txt');
+const badpath2 = getFixturePath('file2.txt');
+const expectedStylish = readFile('expectedStylish.txt');
+const expectedPlain = readFile('expectedPlain.txt');
+const expectedJson = readFile('expectedJSON.txt');
 
-const expectedResult1 = readFixture('expectedStylish.txt');
-
-test('JSON', () => {
-  const filepath1 = getFixturePath('file1.json');
-  const filepath2 = getFixturePath('file2.json');
-
-  expect(genDiff(filepath1, filepath2)).toEqual(expectedResult1);
-  expect(genDiff(filepath1, filepath2, 'stylish')).toEqual(expectedResult1);
+test.each(['.json', '.yml', '.yaml'])('Supported File Extentions Test', (extention) => {
+  const filepath1 = getFixturePath(`file1${extention}`);
+  const filepath2 = getFixturePath(`file2${extention}`);
+  const formatErr = new Error('Unsupported format type (style)! [Supported: stylish, plain, json]');
+  const extErr = new Error('Unsupported file extention (.txt)! [Supported: .json, .yml, .yaml]');
+  expect(genDiff(filepath1, filepath2)).toBe(expectedStylish);
+  expect(genDiff(filepath1, filepath2, 'stylish')).toBe(expectedStylish);
+  expect(genDiff(filepath1, filepath2, 'plain')).toBe(expectedPlain);
+  expect(genDiff(filepath1, filepath2, 'json')).toBe(expectedJson);
+  expect(() => genDiff(filepath1, filepath2, 'style')).toThrow(formatErr);
+  expect(() => genDiff(filepath1, badpath2)).toThrow(extErr);
+  expect(() => genDiff(badpath1, filepath2)).toThrow(extErr);
 });
 
-// describe('genDiff should work correctly', () => {
-//   test.each(formats)('genDiff should work with %p', (format) => {
-//     const filepath1 = getFixturePath(`file1.${format}`);
-//     const filepath2 = getFixturePath(`file2.${format}`);
-//     expect(genDiff(filepath1, filepath2)).toEqual(readFixture('expectedStylish.txt'));
-//     expect(genDiff(filepath1, filepath2, 'stylish')).toEqual(readFixture('expectedStylish.txt'));
-//     expect(genDiff(filepath1, filepath2, 'plain')).toEqual(readFixture('expectedPlain.txt'));
-//     expect(genDiff(filepath1, filepath2, 'json')).toEqual(readFixture('expectedJSON.txt'));
-//   });
-// });
+test.each([stylish/* , plain */])('Node Type Errors Test', (formatter) => {
+  const unknownTypeDiff = [{ key: 'key', type: 'unknown', value: 'value' }];
+  const error = new Error('Unsupported node type (unknown)!');
+  expect(() => formatter(unknownTypeDiff)).toThrow(error);
+});
