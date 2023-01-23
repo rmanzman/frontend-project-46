@@ -4,6 +4,9 @@ on:
   - push
   - pull_request
 
+env:
+  CI: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,12 +23,12 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: npm install
         run:
-          npm install
-        env:
-          CI: true
-      - name: Run linter
+          make install
+      - name: make lint
         run:
           make lint
+      - name: make test-coverage
+          run: make test-coverage
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v3.0.0
         env:
