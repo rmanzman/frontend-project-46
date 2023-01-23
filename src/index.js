@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import { readFileSync } from 'fs';
+import { cwd } from 'process';
 import path from 'path';
 import format from './formatters/index.js';
 import buildTree from './buildTree.js';
@@ -8,7 +9,7 @@ import parseData from './parsers.js';
 const getFormat = (filepath) => _.trim(path.extname(filepath), '.');
 
 const readFile = (filepath) => {
-  const fullPath = path.resolve(process.cwd(), filepath);
+  const fullPath = path.resolve(cwd(), filepath);
   const data = readFileSync(fullPath, 'utf-8');
   return parseData(data, getFormat(filepath));
 };
