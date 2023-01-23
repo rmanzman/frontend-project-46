@@ -7,4 +7,4 @@ lint:
 gendiff:
 	node bin/gendiff.js
 test-coverage:
-	npm test -- --coverage
+	npx test -- --coverage
