@@ -1,9 +1,9 @@
 import _ from 'lodash';
 import { readFileSync } from 'fs';
 import path from 'path';
+import format from './formatters/index.js';
 import buildTree from './buildTree.js';
 import parseData from './parsers.js';
-import format from './formatters/index.js';
 
 const getFormat = (filepath) => _.trim(path.extname(filepath), '.');
 
