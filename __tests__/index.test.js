@@ -17,7 +17,7 @@ describe('genDiff should work correctly', () => {
     const filepath1 = getFixturePath(`file1.${format}`);
     const filepath2 = getFixturePath(`file2.${format}`);
     expect(genDiff(filepath1, filepath2)).toEqual(readFile('expectedStylish.txt'));
-    // expect(genDiff(filepath1, filepath2, 'stylish')).toEqual(readFile('expectedStylish.txt'));
+    expect(genDiff(filepath1, filepath2, 'stylish')).toEqual(readFile('expectedStylish.txt'));
     // expect(genDiff(filepath1, filepath2, 'plain')).toEqual(readFile('expectedPlain.txt'));
     // expect(genDiff(filepath1, filepath2, 'json')).toEqual(readFile('expectedJSON.txt'));
   });
