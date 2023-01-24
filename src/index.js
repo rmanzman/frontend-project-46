@@ -6,12 +6,12 @@ import format from './formatters/index.js';
 import buildTree from './buildTree.js';
 import parseData from './parsers.js';
 
-const getFormat = (filepath) => _.trim(path.extname(filepath), '.');
+const getExtension = (filepath) => _.trim(path.extname(filepath), '.');
 
 const readFile = (filepath) => {
   const fullPath = path.resolve(cwd(), filepath);
   const data = readFileSync(fullPath, 'utf-8');
-  return parseData(data, getFormat(filepath));
+  return parseData(data, getExtension(filepath));
 };
 
 export default (filepath1, filepath2, formatName = 'stylish') => {
