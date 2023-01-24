@@ -15,14 +15,3 @@ test('genDiff should work correctly', () => {
 
   expect(genDiff(filepath1, filepath2)).toEqual(readFixture('expectedStylish.txt'));
 });
-
-// describe('genDiff should work correctly', () => {
-//   test.each(formats)('genDiff should work with %p', (format) => {
-//     const filepath1 = getFixturePath(`file1.${format}`);
-//     const filepath2 = getFixturePath(`file2.${format}`);
-//     expect(genDiff(filepath1, filepath2)).toEqual(readFixture('expectedStylish.txt'));
-//     expect(genDiff(filepath1, filepath2, 'stylish')).toEqual(readFixture('expectedStylish.txt'));
-//     expect(genDiff(filepath1, filepath2, 'plain')).toEqual(readFixture('expectedPlain.txt'));
-//     expect(genDiff(filepath1, filepath2, 'json')).toEqual(readFixture('expectedJSON.txt'));
-//   });
-// });
