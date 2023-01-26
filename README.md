@@ -54,6 +54,7 @@ gendiff -f stylish path/to/file1.json path/to/file2.json
 ```
 
 Stylish output demonstration:
+[![asciicast](https://asciinema.org/a/f3hz8UmzipMi7VSbBE58u6nM2.svg)](https://asciinema.org/a/f3hz8UmzipMi7VSbBE58u6nM2)
 
 For plain output:
 ```bash
@@ -61,6 +62,7 @@ gendiff -f plain path/to/file1.json path/to/file2.json
 ```
 
 Plain output demonstration:
+[![asciicast](https://asciinema.org/a/FdZzW1c3wp4767KgVc10v8uma.svg)](https://asciinema.org/a/FdZzW1c3wp4767KgVc10v8uma)
 
 For JSON output:
 ```bash
@@ -68,3 +70,4 @@ gendiff -f json path/to/file1.json path/to/file2.json
 ```
 
 JSON output demonstration:
+[![asciicast](https://asciinema.org/a/KkaQllbvmpATilKNn9Jey50Cz.svg)](https://asciinema.org/a/KkaQllbvmpATilKNn9Jey50Cz)
