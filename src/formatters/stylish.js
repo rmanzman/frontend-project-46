@@ -35,7 +35,7 @@ const iter = (diff, depth = 1) => diff.map((node) => {
       return `${indent(depth, IS_FULL)}${node.key}: {\n${lines.join('\n')}\n${indent(depth, IS_FULL)}}`;
     }
     default:
-      throw new Error(`Unknown type of node ${node.type}.`);
+      throw new Error(`Unknown type of node ${node.flag}.`);
   }
 });
 
