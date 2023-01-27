@@ -14,7 +14,7 @@ const readFixture = (filename) => readFileSync(getFixturePath(filename), 'utf-8'
 const formats = ['json', 'yaml', 'yml'];
 
 describe('gendiff regular work', () => {
-  test.each(formats)('test of working with %p', (format) => {
+  test.each(formats)('working with %p', (format) => {
     const filepath1 = getFixturePath(`file1.${format}`);
     const filepath2 = getFixturePath(`file2.${format}`);
     expect(genDiff(filepath1, filepath2)).toEqual(readFixture('patternStylish.txt'));
