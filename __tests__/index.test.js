@@ -23,13 +23,13 @@ describe('gendiff regular work', () => {
     expect(genDiff(filepath1, filepath2, 'json')).toEqual(readFixture('patternJSON.txt'));
   });
 
-  test('test of throwing error for unknown input format', () => {
+  test('throwing error for unsupported input format', () => {
     expect(() => {
       parser('somedata', 'exe');
     }).toThrow(new Error('Unknown format exe.\nSupported formats: json, yaml and yml.'));
   });
 
-  test('test of throwing error for unknown output format', () => {
+  test('throwing error for unsupported output format', () => {
     expect(() => {
       formatter('unknown', 'unknown');
     }).toThrow(new Error('The unknown format is not supported.\nSupported output formats: stylish, plain and json.'));
