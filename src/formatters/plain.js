@@ -13,10 +13,10 @@ const stringify = (value) => {
 const buildPath = (node, currentPath) => (currentPath !== '' ? `${currentPath}.${node.key}` : String(node.key));
 
 const iter = (tree, path) => tree
-  .filter((node) => node.flag !== 'unchanged')
+  .filter((node) => node.type !== 'unchanged')
   .map((node) => {
     const currentPath = buildPath(node, path);
-    switch (node.flag) {
+    switch (node.type) {
       case 'added':
         return `Property '${currentPath}' was added with value: ${stringify(node.value)}`;
       case 'deleted':
@@ -27,7 +27,7 @@ const iter = (tree, path) => tree
       case 'nested':
         return iter(node.children, currentPath).join('\n');
       default:
-        throw new Error(`Unknown node type ${node.flag}.`);
+        throw new Error(`Unknown type of node ${node.type}.`);
     }
   });
 
