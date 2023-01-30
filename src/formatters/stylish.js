@@ -19,25 +19,26 @@ const stringify = (data, depth) => {
   return `{\n${lines.join('\n')}\n${indent(depth, IS_FULL)}}`;
 };
 
-const iter = (diff, depth = 1) => diff.map((node) => {
-  switch (node.flag) {
-    case 'deleted':
-      return `${indent(depth)}- ${node.key}: ${stringify(node.value, depth)}`;
-    case 'added':
-      return `${indent(depth)}+ ${node.key}: ${stringify(node.value, depth)}`;
-    case 'changed': {
-      return `${indent(depth)}- ${node.key}: ${stringify(node.value1, depth)}\n${indent(depth)}+ ${node.key}: ${stringify(node.value2, depth)}`;
+const iter = (diff, depth = 1) => diff
+  .map((node) => {
+    switch (node.type) {
+      case 'deleted':
+        return `${indent(depth)}- ${node.key}: ${stringify(node.value, depth)}`;
+      case 'added':
+        return `${indent(depth)}+ ${node.key}: ${stringify(node.value, depth)}`;
+      case 'changed': {
+        return `${indent(depth)}- ${node.key}: ${stringify(node.value1, depth)}\n${indent(depth)}+ ${node.key}: ${stringify(node.value2, depth)}`;
+      }
+      case 'unchanged':
+        return `${indent(depth, IS_FULL)}${node.key}: ${stringify(node.value, depth)}`;
+      case 'nested': {
+        const lines = iter(node.children, depth + 1);
+        return `${indent(depth, IS_FULL)}${node.key}: {\n${lines.join('\n')}\n${indent(depth, IS_FULL)}}`;
+      }
+      default:
+        throw new Error(`Unknown type of node ${node.type}.`);
     }
-    case 'unchanged':
-      return `${indent(depth, IS_FULL)}${node.key}: ${stringify(node.value, depth)}`;
-    case 'nested': {
-      const lines = iter(node.children, depth + 1);
-      return `${indent(depth, IS_FULL)}${node.key}: {\n${lines.join('\n')}\n${indent(depth, IS_FULL)}}`;
-    }
-    default:
-      throw new Error(`Unknown type of node ${node.flag}.`);
-  }
-});
+  });
 
 export default (tree) => {
   const result = iter(tree, 1);
