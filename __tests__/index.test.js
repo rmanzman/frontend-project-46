@@ -47,6 +47,6 @@ describe('gendiff regular work', () => {
 
   test.each(['stylish', 'plain'])('throwing error for unknown type of node in %p output format', (output) => {
     const nodeWithUnknownType = [{ key: 'key', value: 'value', type: 'boom' }];
-    expect(() => formatter(nodeWithUnknownType, output)).toThrow('Unknown type of node boom.');
+    expect(() => formatter(nodeWithUnknownType, output)).toThrow(new Error('Unknown type of node \'boom\'.'));
   });
 });
