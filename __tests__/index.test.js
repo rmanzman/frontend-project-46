@@ -11,27 +11,42 @@ const __dirname = dirname(__filename);
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 const readFixture = (filename) => readFileSync(getFixturePath(filename), 'utf-8');
 
-const formats = ['json', 'yaml', 'yml'];
+const extensions = ['json', 'yaml', 'yml'];
+const formats = ['stylish', 'plain', 'json'];
 
 describe('gendiff regular work', () => {
-  test.each(formats)('working with %p', (format) => {
-    const filepath1 = getFixturePath(`file1.${format}`);
-    const filepath2 = getFixturePath(`file2.${format}`);
+  test.each(extensions)('working with %p extension', (extension) => {
+    const filepath1 = getFixturePath(`file1.${extension}`);
+    const filepath2 = getFixturePath(`file2.${extension}`);
     expect(genDiff(filepath1, filepath2)).toEqual(readFixture('patternStylish.txt'));
     expect(genDiff(filepath1, filepath2, 'stylish')).toEqual(readFixture('patternStylish.txt'));
     expect(genDiff(filepath1, filepath2, 'plain')).toEqual(readFixture('patternPlain.txt'));
     expect(genDiff(filepath1, filepath2, 'json')).toEqual(readFixture('patternJSON.txt'));
   });
 
-  test('throwing error for unsupported input format', () => {
+  test.each(formats)('working with %p format', (format) => {
+    const diff = [{ key: 'key', value: 'value', type: 'added' }];
     expect(() => {
-      parser('somedata', 'exe');
-    }).toThrow(new Error('Unknown format exe.\nSupported formats: json, yaml and yml.'));
+      formatter(diff, format);
+    }).not.toThrow();
+  });
+
+  test('throwing error for unsupported input format', () => {
+    const unsupExt = 'html';
+    expect(() => {
+      parser('somedata', unsupExt);
+    }).toThrow(new Error(`Unsupported format ${unsupExt}.\nSupported formats: json, yaml and yml.`));
   });
 
   test('throwing error for unsupported output format', () => {
+    const unsupFormat = 'unknown';
     expect(() => {
-      formatter('unknown', 'unknown');
-    }).toThrow(new Error('The unknown format is not supported.\nSupported output formats: stylish, plain and json.'));
+      formatter('somedata', unsupFormat);
+    }).toThrow(new Error(`The ${unsupFormat} format is not supported.\nSupported output formats: stylish, plain and json.`));
+  });
+
+  test.each(['stylish', 'plain'])('throwing error for unknown type of node', (output) => {
+    const unknownTypeDiff = [{ key: 'key', value: 'value', type: 'boom' }];
+    expect(() => formatter(unknownTypeDiff, output)).toThrow('Unknown type of node boom.');
   });
 });
