@@ -27,7 +27,7 @@ const iter = (tree, path) => tree
       case 'nested':
         return iter(node.children, currentPath).join('\n');
       default:
-        throw new Error(`Unknown type of node ${node.type}.`);
+        throw new Error(`Unknown type of node '${node.type}'.`);
     }
   });
 
