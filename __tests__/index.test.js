@@ -45,7 +45,7 @@ describe('gendiff regular work', () => {
     }).toThrow(new Error(`The ${unsupFormat} format is not supported.\nSupported output formats: stylish, plain and json.`));
   });
 
-  test.each(['stylish', 'plain'])('throwing error for unknown type of node', (output) => {
+  test.each(['stylish', 'plain'])('throwing error for unknown type of node in %p output format', (output) => {
     const nodeWithUnknownType = [{ key: 'key', value: 'value', type: 'boom' }];
     expect(() => formatter(nodeWithUnknownType, output)).toThrow('Unknown type of node boom.');
   });
