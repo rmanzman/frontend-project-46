@@ -9,6 +9,6 @@ export default (data, format) => {
     case 'yml':
       return YAML.load(data);
     default:
-      throw new Error(`Unknown format ${format}.\nSupported formats: json, yaml and yml.`);
+      throw new Error(`Unsupported format ${format}.\nSupported formats: json, yaml and yml.`);
   }
 };
