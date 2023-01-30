@@ -4,11 +4,11 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/2690700a2c00f5bce7e3/test_coverage)](https://codeclimate.com/github/rmanzman/frontend-project-46/test_coverage)
 [![Tests](https://github.com/rmanzman/frontend-project-46/actions/workflows/gendiff.yml/badge.svg)](https://github.com/rmanzman/frontend-project-46/actions/workflows/gendiff.yml)
 
-### Description:
-Gendiff is a CLI utility compares two configuration files and shows a difference.
+## Gendiff 
 ***
 
-
+### Description:
+Gendiff is a CLI utility compares two configuration files and shows a difference.
 
 ### System requirements and Installation guide:
 Make sure you have Node.js (14.0.x.x or higher) and npm installed.
