@@ -15,8 +15,8 @@ const readFile = (filepath) => {
 };
 
 export default (filepath1, filepath2, formatName = 'stylish') => {
-  const dataFromFile1 = readFile(filepath1);
-  const dataFromFile2 = readFile(filepath2);
-  const tree = buildTree(dataFromFile1, dataFromFile2);
+  const data1 = readFile(filepath1);
+  const data2 = readFile(filepath2);
+  const tree = buildTree(data1, data2);
   return format(tree, formatName);
 };
