@@ -24,12 +24,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rmanzman/frontend-project-46.git"
+    "url": "git+https://github.com/rmanzman/gendiff.git"
   },
   "author": "Roman Krayzman",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/rmanzman/frontend-project-46/issues"
+    "url": "https://github.com/rmanzman/gendiff/issues"
   },
-  "homepage": "https://github.com/rmanzman/frontend-project-46#readme"
+  "homepage": "https://github.com/rmanzman/gendiff#readme"
 }
