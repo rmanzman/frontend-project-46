@@ -12,9 +12,7 @@ const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', 
 const readFixture = (filename) => readFileSync(getFixturePath(filename), 'utf-8');
 
 const extensions = ['json', 'yaml', 'yml'];
-const stylish = ['stylish', 'patternStylish.txt'];
-const plain = ['plain', 'patternPlain.txt'];
-const json = ['json', 'patternJSON.txt'];
+const formats = ['stylish', 'plain', 'json'];
 
 describe('gendiff run with different extensions', () => {
   test.each(extensions)('should working with %p', (extension) => {
@@ -26,11 +24,12 @@ describe('gendiff run with different extensions', () => {
   });
 });
 
-describe.each([stylish, plain, json])('gendiff run with \'%s\' output format', (format, pattern) => {
-  test(`should match '${pattern}'`, () => {
+describe.each(formats)('gendiff run with \'%s\' output format', (format) => {
+  const expected = readFixture(`${format}.txt`, 'utf-8');
+  test(`should match '${format}.txt' pattern`, () => {
     const filepath1 = getFixturePath('file1.json');
     const filepath2 = getFixturePath('file2.json');
-    expect(genDiff(filepath1, filepath2, format)).toEqual(readFixture(pattern));
+    expect(genDiff(filepath1, filepath2, format)).toBe(expected);
   });
 });
 
