@@ -13,11 +13,11 @@ Make sure you have Node.js (14.0.x.x or higher) and npm installed.
 
 1. Clone the project
 ```bash
-git clone https://github.com/rmanzman/frontend-project-46.git
+git clone https://github.com/rmanzman/gendiff.git
 ```
 2. Install the project
 ```bash
-cd frontend-project-46
+cd gendiff
 npm ci
 ```
 3. Install dependencies
