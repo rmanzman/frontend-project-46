@@ -1,7 +1,8 @@
-[![Actions Status](https://github.com/rmanzman/frontend-project-46/workflows/hexlet-check/badge.svg)](https://github.com/rmanzman/frontend-project-46/actions)
-[![Tests](https://github.com/rmanzman/frontend-project-46/actions/workflows/gendiff.yml/badge.svg)](https://github.com/rmanzman/frontend-project-46/actions/workflows/gendiff.yml)
-[![Maintainability](https://api.codeclimate.com/v1/badges/2690700a2c00f5bce7e3/maintainability)](https://codeclimate.com/github/rmanzman/frontend-project-46/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/2690700a2c00f5bce7e3/test_coverage)](https://codeclimate.com/github/rmanzman/frontend-project-46/test_coverage)
+![Last commit](https://img.shields.io/github/last-commit/rmanzman/gendiff)
+[![Actions Status](https://github.com/rmanzman/gendiff/workflows/hexlet-check/badge.svg)](https://github.com/rmanzman/gendiff/actions)
+[![Tests](https://github.com/rmanzman/gendiff/actions/workflows/gendiff.yml/badge.svg)](https://github.com/rmanzman/gendiff/actions/workflows/gendiff.yml)
+[![Maintainability](https://api.codeclimate.com/v1/badges/4e1c8ccd4e1a657e81a9/maintainability)](https://codeclimate.com/github/rmanzman/gendiff/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/2690700a2c00f5bce7e3/test_coverage)](https://codeclimate.com/github/rmanzman/gendiff/test_coverage)
 
 ## Gendiff
 
@@ -53,7 +54,7 @@ gendiff -f stylish path/to/file1.json path/to/file2.json
 
 Stylish output demonstration:
 [![asciicast](https://asciinema.org/a/f3hz8UmzipMi7VSbBE58u6nM2.svg)](https://asciinema.org/a/f3hz8UmzipMi7VSbBE58u6nM2)
-
+***
 For plain output:
 ```bash
 gendiff -f plain path/to/file1.json path/to/file2.json
@@ -61,7 +62,7 @@ gendiff -f plain path/to/file1.json path/to/file2.json
 
 Plain output demonstration:
 [![asciicast](https://asciinema.org/a/FdZzW1c3wp4767KgVc10v8uma.svg)](https://asciinema.org/a/FdZzW1c3wp4767KgVc10v8uma)
-
+***
 For JSON output:
 ```bash
 gendiff -f json path/to/file1.json path/to/file2.json
