@@ -1,5 +1,5 @@
-![Last commit](https://img.shields.io/github/last-commit/rmanzman/gendiff)
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/rmanzman/gendiff/hexlet-check.yml)
+![Last commit](https://img.shields.io/github/last-commit/rmanzman/gendiff?color=32c854)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/rmanzman/gendiff/hexlet-check.yml?color=32c854)](https://github.com/rmanzman/gendiff/actions)
 [![Tests](https://github.com/rmanzman/gendiff/actions/workflows/gendiff.yml/badge.svg)](https://github.com/rmanzman/gendiff/actions/workflows/gendiff.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/4e1c8ccd4e1a657e81a9/maintainability)](https://codeclimate.com/github/rmanzman/gendiff/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/4e1c8ccd4e1a657e81a9/test_coverage)](https://codeclimate.com/github/rmanzman/gendiff/test_coverage)
